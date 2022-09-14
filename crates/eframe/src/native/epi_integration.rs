@@ -282,7 +282,7 @@ impl EpiIntegration {
         let raw_input = self.egui_winit.take_egui_input(window);
         let full_output = self.egui_ctx.run(raw_input, |egui_ctx| {
             crate::profile_scope!("App::update");
-            app.update(egui_ctx, &mut self.frame);
+            app.update(egui_ctx, &mut self.frame, window);
         });
         self.pending_full_output.append(full_output);
         let full_output = std::mem::take(&mut self.pending_full_output);

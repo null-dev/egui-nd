@@ -24,7 +24,7 @@ pub type EventLoopBuilderHook = Box<dyn FnOnce(&mut EventLoopBuilder<RequestRepa
 /// This is how your app is created.
 ///
 /// You can use the [`CreationContext`] to setup egui, restore state, setup OpenGL things, etc.
-pub type AppCreator = Box<dyn FnOnce(&CreationContext<'_>) -> Box<dyn App>>;
+pub type AppCreator = Box<dyn FnOnce(&winit::window::Window, &CreationContext<'_>) -> Box<dyn App>>;
 
 /// Data that is passed to [`AppCreator`] that can be used to setup and initialize your app.
 pub struct CreationContext<'s> {
@@ -67,7 +67,7 @@ pub trait App {
     /// The [`egui::Context`] can be cloned and saved if you like.
     ///
     /// To force a repaint, call [`egui::Context::request_repaint`] at any time (e.g. from another thread).
-    fn update(&mut self, ctx: &egui::Context, frame: &mut Frame);
+    fn update(&mut self, ctx: &egui::Context, frame: &mut Frame, window: &winit::window::Window);
 
     /// Handle to the app.
     ///

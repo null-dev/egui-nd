@@ -935,6 +935,7 @@ name = "custom_window_frame"
 version = "0.1.0"
 dependencies = [
  "eframe",
+ "winit",
 ]
 
 [[package]]

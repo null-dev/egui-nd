@@ -370,7 +370,7 @@ mod glow_integration {
 
             let app_creator = std::mem::take(&mut self.app_creator)
                 .expect("Single-use AppCreator has unexpectedly already been taken");
-            let mut app = app_creator(&epi::CreationContext {
+            let mut app = app_creator(gl_window.window(), &epi::CreationContext {
                 egui_ctx: integration.egui_ctx.clone(),
                 integration_info: integration.frame.info(),
                 storage: integration.frame.storage(),

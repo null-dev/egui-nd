@@ -16,7 +16,7 @@ fn main() {
     eframe::run_native(
         "Custom window frame", // unused title
         options,
-        Box::new(|_cc| Box::new(MyApp::default())),
+        Box::new(|_, _cc| Box::new(MyApp::default())),
     );
 }
 
@@ -28,7 +28,7 @@ impl eframe::App for MyApp {
         egui::Rgba::TRANSPARENT // Make sure we don't paint anything behind the rounded corners
     }
 
-    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame, window: &winit::window::Window) {
         custom_window_frame(ctx, frame, "egui with custom frame", |ui| {
             ui.label("This is just the contents of the window");
             ui.horizontal(|ui| {
